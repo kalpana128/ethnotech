@@ -1,0 +1,90 @@
+create database db;
+ERROR 1007 (HY000): Can't create database 'db'; database exists
+mysql> create db;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'db' at line 1
+mysql> drop db;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'db' at line 1
+mysql> create database DB1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use DB1;
+Database changed
+mysql> CREATE TABLE Employee(
+    ->     emp_id INT PRIMARY KEY,
+    ->     emp_name VARCHAR(50),
+    ->     salary INT
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Employee VALUES
+    -> (1,'Employee1',30000),
+    -> (2,'Employee2',45000),
+    -> (3,'Employee3',50000),
+    -> (4,'Employee4',25000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Employee;
++--------+-----------+--------+
+| emp_id | emp_name  | salary |
++--------+-----------+--------+
+|      1 | Employee1 |  30000 |
+|      2 | Employee2 |  45000 |
+|      3 | Employee3 |  50000 |
+|      4 | Employee4 |  25000 |
++--------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM Employee;
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SUM(salary) FROM Employee;
++-------------+
+| SUM(salary) |
++-------------+
+|      150000 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT AVG(salary) FROM Employee;
++-------------+
+| AVG(salary) |
++-------------+
+|  37500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(salary) FROM Employee;
++-------------+
+| MIN(salary) |
++-------------+
+|       25000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MAX(salary) FROM Employee;
++-------------+
+| MAX(salary) |
++-------------+
+|       50000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    -> COUNT(*) AS TotalEmployees,
+    -> SUM(salary) AS TotalSalary,
+    -> AVG(salary) AS AverageSalary,
+    -> MIN(salary) AS LowestSalary,
+    -> MAX(salary) AS HighestSalary
+    -> FROM Employee;
++----------------+-------------+---------------+--------------+---------------+
+| TotalEmployees | TotalSalary | AverageSalary | LowestSalary | HighestSalary |
++----------------+-------------+---------------+--------------+---------------+
+|              4 |      150000 |    37500.0000 |        25000 |         50000 |
++----------------+-------------+---------------+--------------+---------------+
+1 row in set (0.00 sec)
